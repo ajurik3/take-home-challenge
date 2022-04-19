@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TableFilterModalComponent } from './table-filter-modal.component';
 import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {ReactiveFormsModule} from "@angular/forms";
+import {of} from "rxjs";
 
 describe('TableFilterModalComponent', () => {
   let component: TableFilterModalComponent;
@@ -15,6 +16,7 @@ describe('TableFilterModalComponent', () => {
     ['powerFilter', ''],
     ['rarityFilter', '']
   ]);
+  let dialogRefSpyObj = jasmine.createSpyObj({ afterClosed : of(data), close: of(data) });
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -22,7 +24,7 @@ describe('TableFilterModalComponent', () => {
         ReactiveFormsModule
       ],
       declarations: [ TableFilterModalComponent ],
-      providers: [{provide: MatDialogRef, useValue: {}},
+      providers: [{provide: MatDialogRef, useValue: dialogRefSpyObj},
         { provide: MAT_DIALOG_DATA, useValue: data}]
     })
     .compileComponents();

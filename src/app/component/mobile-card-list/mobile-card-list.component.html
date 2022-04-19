@@ -1,0 +1,25 @@
+<div *ngFor="let card of cards" class="card magic-card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{card.name}}</h5>
+    <div class="card-text">
+      <span class="card-property-title">Color:</span>
+      {{card.color}}
+    </div>
+    <div class="card-text">
+      <span class="card-property-title">Cost:</span>
+      {{card.manaCost}}
+    </div>
+    <div class="card-text">
+      <span class="card-property-title">Type:</span>
+      {{card.originalType}}
+    </div>
+    <div class="card-text">
+      <span class="card-property-title">Power/Toughness:</span>
+      {{card.powerToughness}}
+    </div>
+    <div class="card-text">
+      <span class="card-property-title">Rarity:</span>
+      {{card.rarity}}
+    </div>
+  </div>
+</div>

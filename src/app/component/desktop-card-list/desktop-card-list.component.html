@@ -1,0 +1,34 @@
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header="name"> Name </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="color">
+    <mat-header-cell *matHeaderCellDef mat-sort-header="color"> Color </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.color}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="manaCost">
+    <mat-header-cell *matHeaderCellDef mat-sort-header="manaCost"> Cost </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.manaCost}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="originalType">
+    <mat-header-cell *matHeaderCellDef mat-sort-header="originalType"> Type </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.originalType}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="powerToughness">
+    <mat-header-cell *matHeaderCellDef mat-sort-header="powerToughness"> Power/Toughness </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.powerToughness}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="rarity">
+    <mat-header-cell *matHeaderCellDef mat-sort-header="rarity"> Rarity </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.rarity}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

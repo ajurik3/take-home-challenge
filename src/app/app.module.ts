@@ -10,11 +10,16 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
+import {LayoutModule} from "@angular/cdk/layout";
+import { DesktopCardListComponent } from './component/desktop-card-list/desktop-card-list.component';
+import { MobileCardListComponent } from './component/mobile-card-list/mobile-card-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableFilterModalComponent
+    TableFilterModalComponent,
+    DesktopCardListComponent,
+    MobileCardListComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,8 @@ import {MatSortModule} from "@angular/material/sort";
     ReactiveFormsModule,
     MatDialogModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

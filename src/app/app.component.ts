@@ -1,12 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MtgApi} from './service/mtg-api.service';
 import {Card} from './model/Card';
 import {CardResponse} from './model/CardResponse';
 import {MatDialog} from '@angular/material/dialog';
 import {TableFilterModalComponent} from './component/table-filter-modal/table-filter-modal.component';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
 import {FormControl, Validators} from "@angular/forms";
+import {BreakpointObserver, Breakpoints, BreakpointState} from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-root',
@@ -17,8 +16,7 @@ export class AppComponent implements  OnInit{
   searchForm = new FormControl('', Validators.pattern('^[a-zA-Z\s\'\:]+$'));
   title = 'take-home-app';
   cards: Card[] = [];
-  dataSource: MatTableDataSource<Card> | null;
-  @ViewChild(MatSort) sort: MatSort;
+  displayCards: Card[] = [];
   public filters = new Map<string, string> ([
     ['nameFilter', ''],
     ['colorFilter',  ''],
@@ -27,17 +25,25 @@ export class AppComponent implements  OnInit{
     ['powerFilter', ''],
     ['rarityFilter', '']
   ]);
-  public readonly displayedColumns = ['name', 'color', 'manaCost', 'originalType', 'powerToughness', 'rarity']
   public readonly colors = ['black', 'blue', 'green', 'red', 'white'];
+  public isMobile = false;
   constructor(private mtgApi: MtgApi,
-              public dialogRef: MatDialog) { }
+              public dialogRef: MatDialog,
+              private breakpointObserver: BreakpointObserver
+              ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.breakpointObserver.observe([Breakpoints.HandsetPortrait]).subscribe((state: BreakpointState) => {
+      this.isMobile = state.matches;
+    });
+  }
 
   submitSet() {
     if (!this.searchForm.valid)
       return;
     const searchSet = this.searchForm.value.replace(/\s\s+/g, '+');
+    this.cards = [];
+    this.displayCards = [];
     this.mtgApi.getCards(searchSet, this.colors).subscribe((cardResponse: CardResponse) => {
       for(let i = 0; i < cardResponse.cards.length; i++) {
         const card = cardResponse.cards[i];
@@ -56,18 +62,21 @@ export class AppComponent implements  OnInit{
             i--;
           }
         }
+        if (this.cards?.length) {
+          this.displayCards = [...this.cards.filter(c => this.displayCard(c))]
+        }
         console.log(this.cards);
-        this.dataSource = new MatTableDataSource<Card>(this.cards);
-        this.dataSource.sort = this.sort;
       });
   }
 
   filterColumns() {
     this.dialogRef.open(TableFilterModalComponent, {data: this.filters}).afterClosed()
       .subscribe((newFilters:Map<string, string>) => {
+        if (!newFilters)
+          return;
         this.filters = newFilters;
-        if (this.dataSource) {
-          this.dataSource.data = this.cards.filter(c => this.displayCard(c));
+        if (this.cards?.length) {
+          this.displayCards = [...this.cards.filter(c => this.displayCard(c))]
         }
     });
   }

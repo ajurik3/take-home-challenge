@@ -10,6 +10,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {of} from "rxjs";
 import {MtgApi} from "./service/mtg-api.service";
 import {CardResponse} from "./model/CardResponse";
+import {LayoutModule} from "@angular/cdk/layout";
+import {DesktopCardListComponent} from "./component/desktop-card-list/desktop-card-list.component";
+import {MobileCardListComponent} from "./component/mobile-card-list/mobile-card-list.component";
 
 describe('AppComponent', () => {
 
@@ -66,10 +69,13 @@ describe('AppComponent', () => {
         MatSortModule,
         NoopAnimationsModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        LayoutModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        DesktopCardListComponent,
+        MobileCardListComponent
       ],
     }).compileComponents();
   }));
