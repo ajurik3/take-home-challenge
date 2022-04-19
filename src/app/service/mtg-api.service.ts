@@ -26,7 +26,7 @@ export class MtgApi {
   public getCardsForColor(setName: string, color: string): Observable<CardResponse> {
     let params = new HttpParams()
       .set('setName', setName)
-      .set('color', color)
+      .set('colors', color)
       .set('page', '1')
       .set('pageSize', '100');
 
