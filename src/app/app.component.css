@@ -1,0 +1,23 @@
+.card-header::before {
+  right: 1em;
+  content: "\f0de";
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900;
+  font-size: 1rem;
+  position: absolute;
+  bottom: .5em;
+  display: block;
+  opacity: .3;
+}
+
+.card-header::after {
+  content: "\f0dd";
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900;
+  right: 16px;
+  font-size: 1rem;
+  position: absolute;
+  bottom: .5em;
+  display: block;
+  opacity: .3;
+}

@@ -1,0 +1,48 @@
+<form [formGroup]="filterForm" class="form-group">
+  <div class="form-group">
+    <label for="name-filter-input">Enter filter value for name:</label>
+    <input id="name-filter-input" class="form-control" type="text" [formControl]="nameFilter">
+    <ng-container *ngIf="!nameFilter.valid">
+      <small class="form-text text-danger">Invalid name</small>
+    </ng-container>
+  </div>
+  <div class="form-group">
+    <label for="color-filter-input">Enter filter value for color: </label>
+    <input id="color-filter-input" class="form-control" type="text" [formControl]="colorFilter">
+    <ng-container *ngIf="!colorFilter.valid">
+      <small class="form-text text-danger">Invalid color</small>
+    </ng-container>
+  </div>
+  <div class="form-group">
+    <label for="cost-filter-input">Enter filter value for cost: </label>
+    <input id="cost-filter-input" class="form-control" type="text" [formControl]="costFilter">
+    <ng-container *ngIf="!costFilter.valid">
+      <small class="form-text text-danger">Invalid cost</small>
+    </ng-container>
+  </div>
+  <div class="form-group">
+    <label for="type-filter-input">Enter filter value for type: </label>
+    <input id="type-filter-input" class="form-control" type="text" [formControl]="typeFilter">
+    <ng-container *ngIf="!typeFilter.valid">
+      <small class="form-text text-danger">Invalid type</small>
+    </ng-container>
+  </div>
+  <div class="form-group">
+    <label for="power-filter-input">Enter filter value for power: </label>
+    <input id="power-filter-input" class="form-control" type="text" [formControl]="powerFilter">
+    <ng-container *ngIf="!powerFilter.valid">
+      <small class="form-text text-danger">Invalid power</small>
+    </ng-container>
+  </div>
+  <div class="form-group">
+    <label for="rarity-filter-input">Enter filter value for rarity: </label>
+    <input id="rarity-filter-input" class="form-control" type="text" [formControl]="rarityFilter">
+    <ng-container *ngIf="!rarityFilter.valid">
+      <small class="form-text text-danger">Invalid rarity</small>
+    </ng-container>
+  </div>
+</form>
+<div class="button-container">
+  <button (click)="saveFilter()" class="btn btn-primary">Submit</button>
+  <button (click)="close()" class="btn btn-primary">Cancel</button>
+</div>

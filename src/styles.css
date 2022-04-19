@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+.card-row:hover {
+  background-color: #ececec;
+}
+
+.table-forms {
+  margin-top: 2em;
+  margin-left: 2em;
+}
+
+th.card-header {
+  cursor: pointer;
+}
+
+.set-input {
+  width: 200px;
+  margin-bottom: 1em;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
